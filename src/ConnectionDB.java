@@ -3,10 +3,19 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 
 public class ConnectionDB {
+    private Connection c;
+
+    public ConnectionDB() {
+        c=GetConnect();
+    }
+    
+    
+    
 	public static Connection GetConnect () {
 	      Connection c = null;
 	      try {
@@ -23,9 +32,9 @@ public class ConnectionDB {
 	      return c ;
 	}
         
-        public void insertar(List valores) throws SQLException{
-         Statement stmt = GetConnect().createStatement();
-         String sql = "INSERT INTO COMPANY "
+        public void insertar(List valores, List tipos) throws SQLException{
+         Statement stmt = c.createStatement();
+         String sql = "INSERT INTO \"Cliente\" "
                + "VALUES (" ;
          String val="";
          for(int i=0;i<valores.size();i++){
@@ -33,17 +42,32 @@ public class ConnectionDB {
                  val=val+(String)valores.get(i);
              }
              else{
-                val=val+(String)valores.get(i)+",";
+                val=val+tipoRetorno((String)valores.get(i),(String)tipos.get(i))+",";
              }
          }
          sql=sql+" ) ;";
          stmt.executeUpdate(sql);
          stmt.close();
-         GetConnect().commit();
+         c.commit();
         }
         
+        public String tipoRetorno(String valor, String tipo){
+            if(tipo.equals("int")||tipo.equals("float")){
+                return valor;
+            }
+            else {
+                return "\""+valor+"\"";
+            }
+            }
         public void select(){
             
         }
+       /** public void update(String id, ) throws SQLException{
+            Statement stmt = c.createStatement();
+            String sql = "UPDATE \"Cliente\" set SALARY = 25000.00 where ID=1;";
+            stmt.executeUpdate(sql);
+            c.commit();
+
+        }
 }	
-	
+	**/
