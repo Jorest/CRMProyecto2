@@ -58,7 +58,7 @@ public class ConnectionDB {
             else {
                 return "\""+valor+"\"";
             }
-            }
+        }    
         public void select(){
             
         }
@@ -69,5 +69,5 @@ public class ConnectionDB {
             c.commit();
 
         }
+        **/
 }	
-	**/
