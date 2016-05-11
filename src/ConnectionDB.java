@@ -1,6 +1,7 @@
 import java.sql.Connection;
 import java.sql.DriverManager;
 
+
 public class ConnectionDB {
 	public static Connection GetConnect () {
 	      Connection c = null;
@@ -17,6 +18,5 @@ public class ConnectionDB {
 	      System.out.println("Opened database successfully");
 	      return c ;
 	}
+}	
 	
-
-}
