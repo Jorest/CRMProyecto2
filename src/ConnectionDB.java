@@ -2,7 +2,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 public class ConnectionDB {
-	public static void main(String args[]) {
+	public static Connection GetConnect () {
 	      Connection c = null;
 	      try {
 	         Class.forName("org.postgresql.Driver");
@@ -15,5 +15,8 @@ public class ConnectionDB {
 	         System.exit(0);
 	      }
 	      System.out.println("Opened database successfully");
-	   }
+	      return c ;
+	}
+	
+
 }
