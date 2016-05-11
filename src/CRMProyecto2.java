@@ -17,5 +17,6 @@ public class CRMProyecto2 {
      */
     public static void main(String[] args) {
         Connection c = ConnectionDB.GetConnection();
+        
     }
 }

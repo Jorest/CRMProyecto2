@@ -3,7 +3,7 @@ import java.sql.DriverManager;
 
 
 public class ConnectionDB {
-	public static Connection GetConnect () {
+	public static Connection GetConnection () {
 	      Connection c = null;
 	      try {
 	         Class.forName("org.postgresql.Driver");
