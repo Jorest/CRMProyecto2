@@ -16,6 +16,8 @@ public class CRMProyecto2 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Connection c = ConnectionDB.GetConnection();
+        Connection c = ConnectionDB.GetConnect();
+        NuevoCliente n= new NuevoCliente();
+        n.setVisible(true);
     }
 }
