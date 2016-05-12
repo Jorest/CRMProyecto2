@@ -211,61 +211,64 @@ public class GUI extends javax.swing.JFrame {
         jButton3.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent arg0) {
         		//agregamos todos los campos a 2 listas nombre y tipo
-        		ArrayList<String> addNombres = new ArrayList<String>();
+        		ArrayList<String> addDatos = new ArrayList<String>();
         		ArrayList<String> addTipo = new ArrayList<String>();
         		
         		//nombre
-        		addNombres.add(jTextField2.getText());
+        		addDatos.add(jTextField2.getText());
         		addTipo.add("text");
         		
         		//apellido
-        		addNombres.add(jTextField3.getText());
+        		addDatos.add(jTextField3.getText());
         		addTipo.add("text");
         		
         		//edad
-        		addNombres.add(jTextField9.getText());
+        		addDatos.add(jTextField9.getText());
         		addTipo.add("integer");
 
         		//credito
-        		addNombres.add(jTextField10.getText());
+        		addDatos.add(jTextField10.getText());
         		addTipo.add("double precision");
         		
         		//DPI
-        		addNombres.add(jTextField4.getText());
+        		addDatos.add(jTextField4.getText());
         		addTipo.add("text");
         		
         		//fecha_nacimiento        		
         		String fecha;
                 fecha = new SimpleDateFormat("yyyy/MM/dd").format(jDateChooser1.getDate());
-                addNombres.add(fecha);
+                addDatos.add(fecha);
                 addTipo.add("date");
         		
         		//correo        		
-        		addNombres.add(jTextField6.getText());
+        		addDatos.add(jTextField6.getText());
         		addTipo.add("text");
         		
         		//twitter
-        		addNombres.add(jTextField8.getText());
+        		addDatos.add(jTextField8.getText());
         		addTipo.add("text");
         		
         		//id membresia
-        		addNombres.add(Integer.toString(jComboBox2.getSelectedIndex()+1));
+        		addDatos.add(Integer.toString(jComboBox2.getSelectedIndex()+1));
         		addTipo.add("int");
         		
         		
         		//id genero
-        		addNombres.add(jComboBox1.getSelectedItem().toString());
+        		addDatos.add(jComboBox1.getSelectedItem().toString());
         		addTipo.add("text");
         		
         		//NIT
-        		addNombres.add(jTextField5.getText());
+        		addDatos.add(jTextField5.getText());
         		addTipo.add("text");
         		
-        	
-        		addNombres.addAll(creador.nombres);
+        		
+        		for (int i =0 ; i<creador.campos.size();i++){
+        			addDatos.add(creador.campos.get(i).getText());
+        		}
+        		
         		addTipo.addAll(creador.tipos);
         		
-        		//ACA DUARTEEEEEEEEEEEEEEEEE!!!!!!!!!!!!!!!!!!!!    ADDNOMBRE Y ADDTIPO   USA ESHTAAAAS!!
+        		//ACA DUARTEEEEEEEEEEEEEEEEE!!!!!!!!!!!!!!!!!!!!    addDATOS Y addTIPO   USA ESHTAAAAS!!
 
         	}
         });
