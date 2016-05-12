@@ -67,10 +67,6 @@ public class GUI extends javax.swing.JFrame {
         jComboBox3 = new javax.swing.JComboBox();
         jButton1 = new javax.swing.JButton();
         
-        ArrayList<String> hola = new ArrayList<String>();
-        hola.add("sho");
-        CreacionDinamica creador = new CreacionDinamica();
-        creador.agregarTextFields(jPanel1,hola);
         
        
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
