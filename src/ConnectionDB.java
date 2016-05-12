@@ -8,6 +8,9 @@ import java.util.List;
 
 
 public class ConnectionDB {
+<<<<<<< HEAD
+	public static Connection GetConnection () {
+=======
     private Connection c;
 
     public ConnectionDB() {
@@ -17,6 +20,7 @@ public class ConnectionDB {
     
     
 	public static Connection GetConnect () {
+>>>>>>> f5e4e5fc617cf06d5974fa54101ae6a9af7bd231
 	      Connection c = null;
 	      try {
 	         Class.forName("org.postgresql.Driver");
@@ -58,7 +62,7 @@ public class ConnectionDB {
             else {
                 return "\""+valor+"\"";
             }
-            }
+        }    
         public void select(){
             
         }
@@ -70,5 +74,5 @@ public class ConnectionDB {
             c.commit();
 
         }
+        **/
 }	
-	**/
