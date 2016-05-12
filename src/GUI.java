@@ -18,6 +18,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
 
 /*
  * To change this template, choose Tools | Templates
@@ -32,6 +35,11 @@ public class GUI extends javax.swing.JFrame {
   private Connection c; 
   private ConnectionDB db;
   CreacionDinamica creador = new CreacionDinamica();
+  private JLabel[] col;
+  private String[] tipo;
+  private JTextField[] rowData;
+  private JButton enviar;
+  private String idm; 
 
     public GUI() {
         initComponents();
@@ -586,19 +594,122 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField11ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        //MODIFICAR
-        String id=jTextField11.getText();
+    //MODIFICAR
+        idm=jTextField11.getText();
         Statement stmt = null;
-      try {
-          stmt=c.createStatement();
-          String sql = "DELETE from \"Cliente\" where id="+id +";";
-          stmt.executeUpdate(sql);
+        try {
+            stmt=c.createStatement();
+            String sql = "select * from \"Cliente\" where id="+idm+";";
+            System.out.println(sql);
+            ResultSet resultSet = stmt.executeQuery(sql);
+            //invoke and store query metadata results
+            ResultSetMetaData metadata = resultSet.getMetaData(); 
+            //store number of columns in queried database table
+            int numcols = metadata.getColumnCount(); 
+            //create string array to hold column names
+            col = new JLabel[numcols];
+            tipo= new String[numcols];
+            //read column names into string array
+            for(int count = 0; count < numcols; count++)
+            {       
+                    col[count] = new JLabel(metadata.getColumnLabel(count + 1));
+                    tipo[count]= metadata.getColumnTypeName(count + 1);
+                    //System.out.println(col[count]);
+            }               
+            //create table model to display query results           
+            //DefaultTableModel dtm_search_model = new DefaultTableModel(null,col);
+
+            //display resultSet(stored query data) in DefaultTable Model(JTable)  
+            rowData = new JTextField[numcols];
+            while (resultSet.next())
+                {
+                for (int i = 0; i <numcols; i++)
+                    {
+                        rowData[i] = new JTextField();
+                        if(resultSet.getObject(i+1)!=null){
+                            rowData[i].setText(resultSet.getObject(i+1).toString());
+                        }
+                    }
+            }
+            JFrame moment= new JFrame();
+            int posx=10; 
+            int posy=10;
+            for (int i=0; i<numcols;i++){
+                System.out.println("sdkjsdkj");
+                System.out.println(tipo[i]);
+                col[i].setLocation(posx,posy);
+                col[i].setSize(50, 20);
+                rowData[i].setLocation(posx+80,posy);
+                rowData[i].setSize(200, 20);
+                moment.add(col[i]);
+                moment.add(rowData[i]);
+                posy=posy+30;
+            }
+            enviar=new JButton("Enviar");
+            //enviar.setSize(50,30);
+            enviar.setBounds(posx, posy+30, 100, 50);
+            //menviar.setLocation(posx,posy+30);
+            enviar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                try {
+                    enviar(evt);
+                } catch (SQLException ex) {
+                    Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            });
+            
+            moment.add(enviar);
+            moment.setSize(500,700);
+            moment.getContentPane().setLayout(null);
+            moment.setVisible(true);
+  
       } catch (SQLException ex) {
           Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
       }
     
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    public void enviar (ActionEvent e) throws SQLException {
+        if (e.getSource()==enviar) {
+            Statement stmt = c.createStatement();
+            String sql = "UPDATE \"Cliente\" set ";
+            String val="";
+            for(int i=0; i<rowData.length;i++){
+                if(i==rowData.length-1){
+                    val=val+columna(col[i].getText())+"="+tipoRetorno(rowData[i].getText(),tipo[i]);
+                }else{
+                    val=val+columna(col[i].getText())+"="+tipoRetorno(rowData[i].getText(),tipo[i])+",";
+                }
+            }
+            sql=sql+val;
+            String w=" where id="+idm+";";
+            sql=sql+w;
+            System.out.println(sql);
+            stmt.executeUpdate(sql);
+            //c.commit();
+        }
+    }
+    public String columna(String valor){
+        if(valor.equals("DPI")||valor.equals("NIT")){
+            return "\""+valor+"\"";
+        }else{
+            return valor;
+        }
+    }
+    
+     public String tipoRetorno(String valor, String tipo){
+            if(valor.equals("")){
+                return "null";
+            }
+            if(tipo.equals("text")||tipo.equals("date")){
+                 return "'"+valor+"'";
+            }
+            else {
+                return valor;
+            }
+            }
+    
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // BORRARR
         String id=jTextField11.getText();
