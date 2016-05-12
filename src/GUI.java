@@ -1,4 +1,17 @@
 
+import java.awt.BorderLayout;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.Statement;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
+
 
 /*
  * To change this template, choose Tools | Templates
@@ -10,13 +23,82 @@
  * @author Proton
  */
 public class GUI extends javax.swing.JFrame {
-
+  
     /**
      * Creates new form GUI
      */
     public GUI() {
         initComponents();
+        Query();
+        
     }
+    public void Query(){ 
+       
+       
+      try{
+                Statement stmt = null;
+                Connection c;
+                //SQL query to send to database
+                 Class.forName("org.postgresql.Driver");
+	         c = DriverManager
+	            .getConnection("jdbc:postgresql://localhost:5432/Proyecto2",
+	            "postgres", "postgres");
+                stmt = c.createStatement();
+                String query = "select * from \"Cliente\"";
+                 
+                //invoke and store query results
+                
+                ResultSet resultSet = stmt.executeQuery(query);
+                //invoke and store query metadata results
+                ResultSetMetaData metadata = resultSet.getMetaData(); 
+          
+                //store number of columns in queried database table
+                int numcols = metadata.getColumnCount(); 
+                System.out.println("asdaosdiaosdiaosdioasidoaisdoiasd");
+                System.out.println(numcols);
+ 
+                //create string array to hold column names
+                 String[] col = new String[numcols];
+ 
+                //read column names into string array
+                for(int count = 0; count < numcols; count++)
+                {           
+                        col[count] = metadata.getColumnLabel(count + 1);
+                        System.out.println(col[count]);
+                }               
+ 
+                //create table model to display query results           
+                DefaultTableModel dtm_search_model = new DefaultTableModel(null,col);
+ 
+                //display resultSet(stored query data) in DefaultTable Model(JTable)                        
+                while (resultSet.next())
+           {
+               Object [] rowData = new Object[numcols];
+               for (int i = 0; i < rowData.length; ++i)
+               {
+                   rowData[i] = resultSet.getObject(i+1);
+                   //System.out.println("skddddddddddddddddddddajskdjaskdjaskdjkasjd");
+                   //System.out.println(rowData[i].toString());
+               }
+               dtm_search_model.addRow(rowData);
+ 
+               //create a table to view search results
+               JTable JTable1 = new JTable(dtm_search_model);
+               JTable1.setFillsViewportHeight(true);
+                jPanel3.setLayout(new BorderLayout());
+                JScrollPane tableContainer = new JScrollPane(JTable1);
+                jPanel3.add(tableContainer, BorderLayout.CENTER);
+                
+                //jPanel3.add(frame);
+ 
+                }
+                }
+        catch(Exception exception)
+        {
+                exception.printStackTrace();
+        }
+     return;
+  }
 
     /**
      * This method is called from within the constructor to initialize the form.

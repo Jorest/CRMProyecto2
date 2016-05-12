@@ -62,6 +62,7 @@ public class ConnectionDB {
         public void select(){
             
         }
+}
        /** public void update(String id, ) throws SQLException{
             Statement stmt = c.createStatement();
             String sql = "UPDATE \"Cliente\" set SALARY = 25000.00 where ID=1;";
