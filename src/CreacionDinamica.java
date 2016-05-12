@@ -42,8 +42,8 @@ public class CreacionDinamica {
                 //SQL query to send to database
                  Class.forName("org.postgresql.Driver");
            c = DriverManager
-              .getConnection("jdbc:postgresql://localhost:5432/Empresa",
-              "postgres", "none");
+              .getConnection("jdbc:postgresql://localhost:5432/Proyecto2",
+              "postgres", "postgres");
                 stmt = c.createStatement();
 				
 				query+="AlTER TABLE \"Cliente\" ADD "+nombre+" "+tipo+" ;" ;
@@ -65,8 +65,8 @@ public class CreacionDinamica {
 //metodo que agrega un boton
 
 	public void agregarTextFields( JPanel frame ){
-			int posiciony=300;
-			Query();
+                int posiciony=300;
+                  Query();
 		  for (int i=0 ; i<nombres.size();i++){
 			  agregarTextField(frame,nombres.get(i), posiciony);
 			  posiciony+=30 ;
@@ -77,12 +77,13 @@ public class CreacionDinamica {
 				frame.add(campos.get(i),BorderLayout.SOUTH);
 				posiciony+=25;
 			}
+                  //campos.clear();
 	
 	}
 	
 	public void agregarTextField( JPanel frame, String nombre, int pos ){
     
-	   frame.setLayout(new GridLayout(0, 1));
+	   //frame.setLayout(new GridLayout(0, 1));
 	   
 	   JTextField milabel =new JTextField(nombre) ;
 	   milabel.setSize(100,25);
@@ -102,8 +103,8 @@ public class CreacionDinamica {
 	                //SQL query to send to database
 	                 Class.forName("org.postgresql.Driver");
 	           c = DriverManager
-	              .getConnection("jdbc:postgresql://localhost:5432/Empresa",
-	              "postgres", "none");
+	              .getConnection("jdbc:postgresql://localhost:5432/Proyecto2",
+	              "postgres", "postgres");
 	                stmt = c.createStatement();
 	                String query = "select * from \"NuevosCampos\"";
 	                 
