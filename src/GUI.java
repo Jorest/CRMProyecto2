@@ -20,6 +20,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /*
@@ -565,8 +566,10 @@ public class GUI extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-    	creador.addCampo(jComboBox3.getSelectedItem().toString(),jTextField1.getText() );
+    	creador.campos.clear();
+        creador.addCampo(jComboBox3.getSelectedItem().toString(),jTextField1.getText() );
         creador.agregarTextFields(jPanel2);
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField10ActionPerformed
@@ -714,10 +717,14 @@ public class GUI extends javax.swing.JFrame {
         // BORRARR
         String id=jTextField11.getText();
          Statement stmt = null;
-      try {      
-          stmt=c.createStatement();
-          String sql = "DELETE from \"Cliente\" where id="+id +";";
-          stmt.executeUpdate(sql);
+      try {
+          int response = JOptionPane.showConfirmDialog(null, "Esta seguro de quere eliminar a ese cliente ?", "Confirm",
+            JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            if (response == JOptionPane.YES_OPTION) {
+                stmt=c.createStatement();
+                String sql = "DELETE from \"Cliente\" where id="+id +";";
+                stmt.executeUpdate(sql);
+            }
       } catch (SQLException ex) {
           Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
       }

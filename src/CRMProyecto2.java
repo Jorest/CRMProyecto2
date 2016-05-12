@@ -27,13 +27,15 @@ public class CRMProyecto2 {
         Connection c = ConnectionDB.GetConnect();
         Twitter t= new Twitter();
         try {
-            t.getInformacion("RiverKev95");
             
-           /** 
             GUI gui = new GUI();
             gui.setVisible(true);
+            t.getInformacion("RiverKev95");
             
-            System.out.println("Prueba conexión MongoDB");
+           
+            
+            
+          /**  System.out.println("Prueba conexión MongoDB");
             MongoClient mongo = MangoDB.crearConexion(); 
             if (mongo != null) {
             System.out.println("Lista de bases de datos: ");
