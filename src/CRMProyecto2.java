@@ -19,7 +19,8 @@ public class CRMProyecto2 {
     public static void main(String[] args) {
 
 
-        Connection c = ConnectionDB. GetConnect();
+        Connection c = ConnectionDB.GetConnect();
+
         GUI gui = new GUI();
         gui.setVisible(true);
 

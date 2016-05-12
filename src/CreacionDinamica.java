@@ -34,8 +34,8 @@ public class CreacionDinamica {
 		if (checkNombre(nombre))
 		{
 			//alteramos la tabla e insertamos un nuevo elemento en el tabla de nuevos campos 
-			query+="AlTER TABLE Cliente ADD" +nombre+" "+ tipo +";" ;
-			query+= '\n' +"INSERT INTO  ( "+'\''+nombre+'\''+", "+'\''+tipo+'\''+") ;";
+			query+="AlTER TABLE \"Cliente\" ADD" +nombre+" "+ tipo +";" ;
+			query+= '\n' +"INSERT INTO \"NuevosCampos\" values ( "+'\''+nombre+'\''+", "+'\''+tipo+'\''+") ;";
 			
 		}
 		return query ;				
@@ -64,7 +64,7 @@ public class CreacionDinamica {
 	   frame.setLayout(new GridLayout(0, 1));
 
 	   JTextField milabel =new JTextField(nombre) ;
-	   milabel.setSize(100,20);
+	   milabel.setSize(10,20);
 	   milabel.setVisible(true);
 	   campos.add(milabel);
 	   
@@ -83,7 +83,7 @@ public class CreacionDinamica {
 	              .getConnection("jdbc:postgresql://localhost:5432/Empresa",
 	              "postgres", "none");
 	                stmt = c.createStatement();
-	                String query = "select * from \"Campos\"";
+	                String query = "select * from \"NuevosCampos\"";
 	                 
 	                //invoke and store query results
 	                

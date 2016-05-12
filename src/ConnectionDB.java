@@ -7,14 +7,13 @@ import java.util.List;
 
 
 public class ConnectionDB {
+
     private Connection c;
 
     public ConnectionDB() {
         c=GetConnect();
     }
-    
-    
-    
+
 	public static Connection GetConnect () {
 	      Connection c = null;
 	      try {
@@ -69,5 +68,6 @@ public class ConnectionDB {
             c.commit();
 
         }
+<<<<<<< HEAD
 }	
 	**/
