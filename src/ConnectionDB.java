@@ -1,4 +1,3 @@
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -19,8 +18,8 @@ public class ConnectionDB {
 	      try {
 	         Class.forName("org.postgresql.Driver");
 	         c = DriverManager
-	            .getConnection("jdbc:postgresql://localhost:5432/Proyecto2",
-	            "postgres", "postgres");
+	            .getConnection("jdbc:postgresql://localhost:5432/Empresa",
+	            "postgres", "none");
 	      } catch (Exception e) {
 	         e.printStackTrace();
 	         System.err.println(e.getClass().getName()+": "+e.getMessage());
@@ -56,7 +55,7 @@ public class ConnectionDB {
             else {
                 return "\""+valor+"\"";
             }
-        }    
+            }
         public void select(){
             
         }
@@ -73,4 +72,6 @@ public class ConnectionDB {
             c.commit();
 
         }
-        **/	
+<<<<<<< HEAD
+}	
+	**/
