@@ -8,7 +8,6 @@ import java.util.List;
 
 
 public class ConnectionDB {
-
     private Connection c;
 
     public ConnectionDB() {
@@ -61,6 +60,11 @@ public class ConnectionDB {
         public void select(){
             
         }
+
+    public Connection getC() {
+        return c;
+    }
+        
 }
        /** public void update(String id, ) throws SQLException{
             Statement stmt = c.createStatement();
