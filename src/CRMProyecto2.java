@@ -1,5 +1,6 @@
 
 import java.sql.Connection;
+import java.util.ArrayList;
 
 /*
  * To change this template, choose Tools | Templates
@@ -16,11 +17,12 @@ public class CRMProyecto2 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-<<<<<<< HEAD
+
         Connection c = ConnectionDB.GetConnection();
+        GUI gui = new GUI();
+        gui.show();
         
-=======
-        Connection c = ConnectionDB.GetConnect();
->>>>>>> 2b08271167f13199b392280f052ad0666c230304
+       
+
     }
 }

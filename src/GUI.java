@@ -1,4 +1,4 @@
-
+import java.util.ArrayList;
 
 /*
  * To change this template, choose Tools | Templates
@@ -66,7 +66,13 @@ public class GUI extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jComboBox3 = new javax.swing.JComboBox();
         jButton1 = new javax.swing.JButton();
-
+        
+        ArrayList<String> hola = new ArrayList<String>();
+        hola.add("sho");
+        CreacionDinamica creador = new CreacionDinamica();
+        creador.agregarTextFields(jPanel1,hola);
+        
+       
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel3.setText("Nombre: ");
@@ -323,6 +329,7 @@ public class GUI extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+    	
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -394,4 +401,6 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     // End of variables declaration//GEN-END:variables
+    
+    
 }
