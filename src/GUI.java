@@ -135,7 +135,7 @@ public class GUI extends javax.swing.JFrame {
 
         jLabel2.setText("Tipo:");
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "integer","text", "double"}));
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "integer","text","double precision"}));
         jComboBox3.setEnabled(true);
         jComboBox3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -228,7 +228,7 @@ public class GUI extends javax.swing.JFrame {
 
         		//credito
         		addNombres.add(jTextField10.getText());
-        		addTipo.add("text");
+        		addTipo.add("double precision");
         		
         		//DPI
         		addNombres.add(jTextField4.getText());
@@ -238,7 +238,7 @@ public class GUI extends javax.swing.JFrame {
         		String fecha;
                 fecha = new SimpleDateFormat("yyyy/MM/dd").format(jDateChooser1.getDate());
                 addNombres.add(fecha);
-                addTipo.add("text");
+                addTipo.add("date");
         		
         		//correo        		
         		addNombres.add(jTextField6.getText());
