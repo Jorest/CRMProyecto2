@@ -34,8 +34,28 @@ public class CreacionDinamica {
 		if (checkNombre(nombre))
 		{
 			//alteramos la tabla e insertamos un nuevo elemento en el tabla de nuevos campos 
-			query+="AlTER TABLE \"Cliente\" ADD" +nombre+" "+ tipo +";" ;
-			query+= '\n' +"INSERT INTO \"NuevosCampos\" values ( "+'\''+nombre+'\''+", "+'\''+tipo+'\''+") ;";
+			
+			try {
+
+                Statement stmt = null;
+                Connection c;
+                //SQL query to send to database
+                 Class.forName("org.postgresql.Driver");
+           c = DriverManager
+              .getConnection("jdbc:postgresql://localhost:5432/Empresa",
+              "postgres", "none");
+                stmt = c.createStatement();
+				
+				query+="AlTER TABLE \"Cliente\" ADD "+nombre+" "+tipo+" ;" ;
+				System.out.println(query);
+				query+= '\n' +"INSERT INTO \"NuevosCampos\" values ( "+'\''+nombre+'\''+", "+'\''+tipo+'\''+") ;";
+				stmt.execute(query);
+			}
+			catch(Exception exception)
+	        {
+	                exception.printStackTrace();
+	        }
+			
 			
 		}
 		return query ;				
@@ -48,23 +68,25 @@ public class CreacionDinamica {
 			int posiciony=300;
 			Query();
 		  for (int i=0 ; i<nombres.size();i++){
-			  agregarTextField(frame,nombres.get(i));
+			  agregarTextField(frame,nombres.get(i), posiciony);
+			  posiciony+=30 ;
 			  
 		  }
 	
 		  for (int i=0 ; i<campos.size();i++){
-				frame.add(campos.get(i),10,posiciony);
+				frame.add(campos.get(i),BorderLayout.SOUTH);
 				posiciony+=25;
 			}
 	
 	}
 	
-	public void agregarTextField( JPanel frame, String nombre){
+	public void agregarTextField( JPanel frame, String nombre, int pos ){
     
 	   frame.setLayout(new GridLayout(0, 1));
-
+	   
 	   JTextField milabel =new JTextField(nombre) ;
-	   milabel.setSize(10,20);
+	   milabel.setSize(100,25);
+	   milabel.setLocation(10,pos);
 	   milabel.setVisible(true);
 	   campos.add(milabel);
 	   
@@ -116,9 +138,10 @@ public class CreacionDinamica {
 	               for (int i = 0; i < rowData.length; ++i)
 	               {
 	                  if (i==0){
-	                	  nombres.add(rowData[i].toString());
+	                	  nombres.add((String)resultSet.getObject(i+1).toString());
+	                	  //System.out.println(rowData[i].toString());
 	                  }else {
-	                	  tipos.add(rowData[i].toString());	  
+	                	  tipos.add((String)resultSet.getObject(i+1).toString());	  
 	                  }
 	                  
 	               }
