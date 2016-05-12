@@ -67,6 +67,9 @@ public class GUI extends javax.swing.JFrame {
         jComboBox3 = new javax.swing.JComboBox();
         jButton1 = new javax.swing.JButton();
         
+       //agregamos los textfield de los campos agregados 
+        CreacionDinamica creador = new CreacionDinamica();
+        creador.agregarTextFields(jPanel1);	
         
        
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);

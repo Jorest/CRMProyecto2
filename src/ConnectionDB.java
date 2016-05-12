@@ -1,4 +1,3 @@
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -8,9 +7,6 @@ import java.util.List;
 
 
 public class ConnectionDB {
-<<<<<<< HEAD
-	public static Connection GetConnection () {
-=======
     private Connection c;
 
     public ConnectionDB() {
@@ -20,13 +16,12 @@ public class ConnectionDB {
     
     
 	public static Connection GetConnect () {
->>>>>>> f5e4e5fc617cf06d5974fa54101ae6a9af7bd231
 	      Connection c = null;
 	      try {
 	         Class.forName("org.postgresql.Driver");
 	         c = DriverManager
-	            .getConnection("jdbc:postgresql://localhost:5432/Proyecto2",
-	            "postgres", "postgres");
+	            .getConnection("jdbc:postgresql://localhost:5432/Empresa",
+	            "postgres", "none");
 	      } catch (Exception e) {
 	         e.printStackTrace();
 	         System.err.println(e.getClass().getName()+": "+e.getMessage());
@@ -62,10 +57,11 @@ public class ConnectionDB {
             else {
                 return "\""+valor+"\"";
             }
-        }    
+            }
         public void select(){
             
         }
+}
        /** public void update(String id, ) throws SQLException{
             Statement stmt = c.createStatement();
             String sql = "UPDATE \"Cliente\" set SALARY = 25000.00 where ID=1;";
@@ -73,5 +69,5 @@ public class ConnectionDB {
             c.commit();
 
         }
-        **/
 }	
+	**/
