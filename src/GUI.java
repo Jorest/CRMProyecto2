@@ -57,11 +57,11 @@ public class GUI extends javax.swing.JFrame {
                 System.out.println(numcols);
  
                 //create string array to hold column names
-                 String[] col = new String[numcols];
+                 String[] col = new String[numcols+1];
  
                 //read column names into string array
                 for(int count = 0; count < numcols; count++)
-                {           
+                {       
                         col[count] = metadata.getColumnLabel(count + 1);
                         System.out.println(col[count]);
                 }               
