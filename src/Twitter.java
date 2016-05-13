@@ -18,6 +18,7 @@ import twitter4j.json.DataObjectFactory;
  * @author Luis
  */
 public class Twitter {
+	Zampadora zampado = new Zampadora();
   private String consumer_key="iKRGfs4BVTt1D7vICixKRmJUJ";  
   private String consumer_secret="73ZibURdOwnYtbNOewsTVGjCKX3s2Lv7cL1iqM5nF1LfEF3iQW";
   private String oauth_token="2484444423-8TPTOvFzZHhGUcyOkqECzcwAoBmhn7eXDNRu0lv";
@@ -43,7 +44,7 @@ public class Twitter {
         for(Status tweet: data){
             String statusJson = DataObjectFactory.getRawJSON(data);
             //System.out.println(statusJson);
-           
+           zampado.agregarJson(statusJson);
            System.out.println(" ID: " + tweet.getId() + " Texto: " + tweet.getText() + "#Retweet: " + tweet.getRetweetCount() );
         }
         System.out.println("finnn");
