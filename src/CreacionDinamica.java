@@ -77,12 +77,13 @@ public class CreacionDinamica {
 				frame.add(campos.get(i),BorderLayout.SOUTH);
 				posiciony+=25;
 			}
+		  campos.clear();
 	
 	}
 	
 	public void agregarTextField( JPanel frame, String nombre, int pos ){
     
-	   frame.setLayout(new GridLayout(0, 1));
+	//   frame.setLayout(new GridLayout(0, 1));
 	   
 	   JTextField milabel =new JTextField(nombre) ;
 	   milabel.setSize(100,25);
